@@ -11,7 +11,9 @@ const userSchema = new Schema({
     required: true
   },
   last_name: String,
-  first_name: String
+  first_name: String,
+  client_id: Number,
+  api_key: String
 });
 
 export default model('User', userSchema);

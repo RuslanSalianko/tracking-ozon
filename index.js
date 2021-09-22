@@ -18,6 +18,7 @@ import { default as userMiddleware } from './middleware/user.js';
 
 import { router as homeRouter } from './routes/home.js';
 import { router as authRouter } from './routes/auth.js';
+import { router as settingsRouter} from './routes/settings.js';
 
 import { default as keys } from './keys/index.js'
 
@@ -58,6 +59,7 @@ app.use(userMiddleware);
 
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
+app.use('/settings', settingsRouter);
 
 const PORT = process.env.PORT || 3000;
 

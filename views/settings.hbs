@@ -1,0 +1,24 @@
+<h2>Настройки</h2>
+{{#if settingsError}}
+  <p class="alert center-align">{{settingsError}}</p>
+{{/if}}
+<div class="row">
+  <form action="/settings" method="POST" class="col s12">
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="client-id" type="text" class="validate" name="client_id" value={{client_id}}>
+        <label for="client-id">Client ID</label>
+        <span class="helper-text" data-error="wrong" data-success="">Введите Client id его можно взять в личном кабинете OZON</span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <input id="api-key" type="text" class="validate" name="api_key" value={{api_key}}>
+        <label for="api-key">API key</label>
+        <span class="helper-text" data-error="wrong" data-success="">Введите API key его можно взять в личном кабинете OZON</span>
+      </div>
+    </div>
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+    <button type="submit" class="btn">Сохранить</button>
+  </form>
+</div>

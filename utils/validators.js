@@ -69,4 +69,15 @@ const loginValidators = [
     })
 ];
 
-export { registerValidators, loginValidators };
+const settingsValidators = [
+  body('client_id', 'Client id должен состоять из 5 цифр')
+    .isLength({ min: 5, max: 5 })
+    .withMessage('Длина должна быть 5 символов')
+    .isNumeric()
+    .trim(),
+  body('api_key', 'API key должен быть формата xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+    .isLength({min: 36, max: 36})
+    .trim()
+];
+
+export { registerValidators, loginValidators, settingsValidators };
