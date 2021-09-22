@@ -1,0 +1,74 @@
+<div class="auth">
+  <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s6"><a class="active" href="#login">Войти</a></li>
+        <li class="tab col s6"><a href="#register">Регистрация</a></li>
+      </ul>
+    </div>
+    <div id="login" class="col s12">
+      {{#if loginError}}
+        <p class="center-align alert"> {{loginError}}</p>
+      {{/if}}
+      <div class="row">
+        <form class="col s12" action="/auth/login" method="POST">
+          <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate" name="email">
+                <label for="email">Email</label>
+                <span class="helper-text" data-error="wrong" data-success="right">Введите email</span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" name="password">
+                <label for="password">Пароль</label>
+                <span class="helper-text" data-error="wrong" data-success="right">Введите пароль</span>
+              </div>
+            </div>
+            <input type="hidden" name="_csrf" value="{{csrf}}">
+            <button type="submit" class="btn">Войти</button>
+        </form>
+      </div>
+    </div>
+    <div id="register" class="col s12">
+      {{#if registerError}}
+        <p class="center-align alert"> {{registerError}}</p>
+      {{/if}}
+      <div class="row">
+        <form class="col s12" action="/auth/register" method="POST">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="first_name" type="text" class="validate" name="first_name">
+              <label for="first_name">Имя</label>
+            </div>
+            <div class="input-field col s6">
+              <input id="last_name" type="text" class="validate" name="last_name">
+              <label for="last_name">Фамилия</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="remail" type="email" class="validate" name="email">
+              <label for="remail">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="rpassword" type="password" class="validate" name="password">
+              <label for="rpassword">Пароль</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="confirm" type="password" class="validate" name="confirm">
+              <label for="confirm">Повторить пароль</label>
+            </div>
+          </div>
+          <input type="hidden" name="_csrf" value="{{csrf}}">
+          <button type="submit" class="btn">Зарегистрировать</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

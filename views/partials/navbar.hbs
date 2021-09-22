@@ -1,0 +1,21 @@
+<nav>
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo">Tracking OZON</a>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      {{#if isHome}}
+        <li class="active"><a href="/"><i class="material-icons">home</i></a></li>
+      {{else}}
+        <li><a href="/"><i class="material-icons">home</i></a></li>
+      {{/if}}
+      {{#if isAuth}}
+        <li><a href="/auth/logout">Выйти</a></li>
+      {{else}}
+        {{#if isLogin}}
+          <li class="active"><a href="/auth/login#login">Войти</a></li>
+        {{else}}
+          <li><a href="/auth/login#login">Войти</a></li>
+        {{/if}}
+      {{/if}}
+    </ul>
+  </div>
+</nav>
