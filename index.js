@@ -16,9 +16,7 @@ const MongoDBStore = connectMongoDBSession(session);
 import { default as varMiddleware } from './middleware/variables.js';
 import { default as userMiddleware } from './middleware/user.js';
 
-import { router as homeRouter } from './routes/home.js';
-import { router as authRouter } from './routes/auth.js';
-import { router as settingsRouter} from './routes/settings.js';
+import { homeRouter, authRouter, settingsRouter } from './routes/index.js';
 
 import { default as keys } from './keys/index.js'
 

@@ -10,10 +10,10 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  last_name: String,
-  first_name: String,
-  client_id: Number,
-  api_key: String
+  lastName: String,
+  firstName: String,
+  clientId: Number,
+  apiKey: String
 });
 
 export default model('User', userSchema);

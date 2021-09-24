@@ -3,11 +3,11 @@ import bcryptjs from 'bcryptjs';
 import User from "../model/user.js";
 
 const registerValidators = [
-  body('last_name')
+  body('lastName')
     .isLength({ min: 3 })
     .withMessage('Длина имени должна быть больше 3 символов')
     .trim(),
-  body('first_name')
+  body('firstName')
     .isLength({ min: 3 })
     .withMessage('Длина фамилии должна быть больше 3 символов')
     .trim(),
@@ -70,12 +70,12 @@ const loginValidators = [
 ];
 
 const settingsValidators = [
-  body('client_id', 'Client id должен состоять из 5 цифр')
+  body('clientId', 'Client id должен состоять из 5 цифр')
     .isLength({ min: 5, max: 5 })
     .withMessage('Длина должна быть 5 символов')
     .isNumeric()
     .trim(),
-  body('api_key', 'API key должен быть формата xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
+  body('apiKey', 'API key должен быть формата xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
     .isLength({min: 36, max: 36})
     .trim()
 ];

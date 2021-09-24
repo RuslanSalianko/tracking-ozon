@@ -4,7 +4,7 @@ import { validationResult } from 'express-validator';
 import User from '../model/user.js';
 import { registerValidators, loginValidators } from '../utils/validators.js';
 
-export const router = Router();
+const router = Router();
 
 router.get('/login', (req, res) => {
   res.render('auth/login', {
@@ -42,7 +42,7 @@ router.post('/login', loginValidators, async (req, res) => {
 
 router.post('/register', registerValidators, async (req, res) => {
   try {
-    const { email, password, last_name, first_name } = req.body;
+    const { email, password, lastName, firstName } = req.body;
 
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -51,7 +51,7 @@ router.post('/register', registerValidators, async (req, res) => {
     }
     const hashPassword = await bcryptjs.hash(password, 12);
     const user = new User({
-      email, password: hashPassword, last_name, first_name
+      email, password: hashPassword, lastName, firstName
     });
 
     await user.save();
@@ -67,3 +67,5 @@ router.get('/logout', async (req, res) => {
     res.redirect('/auth/login#login');
   });
 });
+
+export {router as authRouter};
