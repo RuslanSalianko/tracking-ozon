@@ -1,6 +1,6 @@
-import { body } from "express-validator";
+import { body } from 'express-validator';
 import bcryptjs from 'bcryptjs';
-import User from "../model/user.js";
+import User from '../model/user.js';
 
 const registerValidators = [
   body('lastName')
@@ -14,15 +14,16 @@ const registerValidators = [
   body('email')
     .isEmail()
     .withMessage('Введите корректный email')
-    .custom(async (value, { req }) => {
+    .custom(async (value) => {
       try {
         const user = await User.findOne({ email: value });
         if (user) {
-          return Promise.reject('Пользователь с таким email существует');
+          return Promise.reject(new Error('Пользователь с таким email существует'));
         }
       } catch (error) {
-        console.log(error);
+        throw new Error(error);
       }
+      return Promise.resolve();
     })
     .normalizeEmail(),
   body('password', 'Пароль должен состоять минимум из 6 символов')
@@ -32,11 +33,11 @@ const registerValidators = [
   body('confirm')
     .custom((value, { req }) => {
       if (value !== req.body.password) {
-        return Promise.reject('Пароли не совпадают');
+        return Promise.reject(new Error('Пароли не совпадают'));
       }
       return true;
     })
-    .trim()
+    .trim(),
 ];
 
 const loginValidators = [
@@ -47,11 +48,12 @@ const loginValidators = [
       try {
         const user = await User.findOne({ email: value });
         if (!user) {
-          return Promise.reject('Ведено не правильное имя или пароль');
+          return Promise.reject(new Error('Ведено не правильное имя или пароль'));
         }
       } catch (error) {
-        console.log(error);
+        throw new Error(error);
       }
+      return Promise.resolve();
     })
     .normalizeEmail(),
   body('password')
@@ -61,12 +63,13 @@ const loginValidators = [
         const isPassword = await bcryptjs.compare(value, user.password);
 
         if (!isPassword) {
-          return Promise.reject('Ведено не правильное имя или пароль!');
+          return Promise.reject(new Error('Ведено не правильное имя или пароль!'));
         }
       } catch (error) {
-        console.log(error);
+        throw new Error(error);
       }
-    })
+      return Promise.resolve();
+    }),
 ];
 
 const settingsValidators = [
@@ -76,8 +79,8 @@ const settingsValidators = [
     .isNumeric()
     .trim(),
   body('apiKey', 'API key должен быть формата xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx')
-    .isLength({min: 36, max: 36})
-    .trim()
+    .isLength({ min: 36, max: 36 })
+    .trim(),
 ];
 
 export { registerValidators, loginValidators, settingsValidators };

@@ -1,7 +1,9 @@
-export default function (req, res, next){
-  if(!req.session.isAuthenticated){
-    return res.redirect('/auth/login#login')
+function auth(req, res, next) {
+  if (!req.session.isAuthenticated) {
+    return res.redirect('/auth/login#login');
   }
 
-  next();
+  return next();
 }
+
+export default auth;

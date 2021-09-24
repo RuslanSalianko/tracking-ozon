@@ -1,10 +1,10 @@
 import { Router } from 'express';
 import { validationResult } from 'express-validator';
 import User from '../model/user.js';
-import { default as auth } from '../middleware/auth.js';
+import auth from '../middleware/auth.js';
 import { settingsValidators } from '../utils/validators.js';
 
-const router = Router();
+export const router = Router();
 
 router.get('/', auth, (req, res) => {
   res.render('settings', {
@@ -12,15 +12,15 @@ router.get('/', auth, (req, res) => {
     isSettings: true,
     clientId: req.session.user.clientId,
     apiKey: req.session.user.apiKey,
-    settingsError: req.flash('settingsError')
+    settingsError: req.flash('settingsError'),
   });
 });
 
 router.post('/', auth, settingsValidators, async (req, res) => {
-  const {clientId, apiKey} = req.body;
+  const { clientId, apiKey } = req.body;
   const error = validationResult(req);
-  if(!error.isEmpty()){
-    req.flash('settingsError',error.array()[0].msg);
+  if (!error.isEmpty()) {
+    req.flash('settingsError', error.array()[0].msg);
     return res.status(422).redirect('/settings');
   }
 
@@ -30,7 +30,7 @@ router.post('/', auth, settingsValidators, async (req, res) => {
   user.apiKey = apiKey;
   await user.save();
 
-  res.redirect('/settings');
+  return res.redirect('/settings');
 });
 
-export {router as settingsRouter};
+export { router as settingsRouter };
