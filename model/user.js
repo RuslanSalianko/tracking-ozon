@@ -17,4 +17,10 @@ const userSchema = new Schema({
   apiKey: String,
 });
 
+userSchema.methods.saveSettings = function (clientId, apiKey) {
+  this.clientId = clientId;
+  this.apiKey = apiKey;
+  return this.save();
+};
+
 export default model('User', userSchema);

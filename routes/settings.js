@@ -26,9 +26,7 @@ router.post('/', auth, settingsValidators, async (req, res) => {
 
   const user = await User.findById(req.user._id);
 
-  user.clientId = clientId;
-  user.apiKey = apiKey;
-  await user.save();
+  user.saveSettings(clientId, apiKey);
 
   return res.redirect('/settings');
 });
