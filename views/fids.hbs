@@ -1,0 +1,27 @@
+<h1>Сохраненные фиды</h1>
+
+{{#if fids}}
+  <table class="striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Время получения</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each fids}}
+        <tr>
+          <td>{{_id}}</td>
+          <td class="date">{{date}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p>Еще нет полученных фидов</p>
+{{/if}}
+<br>
+<form action="/fids/getDataOzon" method="post">
+  <input type="hidden" name="_csrf" value="{{csrf}}">
+  <button type="submit" class="btn">Получить фид</button>
+</form>
