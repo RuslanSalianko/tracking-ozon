@@ -13,12 +13,17 @@
         {{else}}
           <li><a href="/fids">Фиды</a></li>
         {{/if}}
+        {{#if isDifference}}
+          <li class="active"><a href="/difference">Различие</a></li>
+        {{else}}
+          <li><a href="/difference">Различие</a></li>
+        {{/if}}
         {{#if isSettings}}
           <li class="active"><a href="/settings"><i class="material-icons">settings</i></a></li>
         {{else}}
           <li><a href="/settings"><i class="material-icons">settings</i></a></li>
         {{/if}}
-        <li><a href="/auth/logout">Выйти</a></li>
+        <li><a href="/auth/logout"><i class="material-icons">exit_to_app</i></a></li>
       {{else}}
         {{#if isLogin}}
           <li class="active"><a href="/auth/login#login">Войти</a></li>

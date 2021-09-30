@@ -11,12 +11,14 @@ import mongoose from 'mongoose';
 import ConnectMongoDBSession from 'connect-mongodb-session';
 import varMiddleware from './middleware/variables.js';
 import userMiddleware from './middleware/user.js';
+import useHelpers from './utils/hbs-helpers.js';
 
 import {
   homeRouter,
   authRouter,
   settingsRouter,
   fidsRouter,
+  differenceRouter,
 } from './routes/index.js';
 
 import keys from './keys/index.js';
@@ -37,6 +39,7 @@ const hbs = exphbs.create({
   defaultLayout: 'main',
   extname: 'hbs',
   handlebars: allowInsecurePrototypeAccess(Handlebars),
+  helpers: useHelpers,
 });
 
 app.engine('hbs', hbs.engine);
@@ -62,6 +65,7 @@ app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/settings', settingsRouter);
 app.use('/fids', fidsRouter);
+app.use('/difference', differenceRouter);
 
 const PORT = process.env.PORT || 3000;
 

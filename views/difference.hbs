@@ -1,0 +1,23 @@
+<div class="difference">
+  <h1>Различие между фидами</h1>
+  <div class="row">
+    <div class="input-field col s6">
+      <select>
+        {{#each fids }}
+        <option value="{{_id}}">{{#index @index}} {{/index}}:  {{#date date}} {{/date}}</option>
+        {{/each}}
+      </select>
+      <label>Сравниваемый фид</label>
+    </div>
+    <div class="input-field col s6">
+      <select>
+        {{#each fids }}
+        <option value="{{_id}}">{{#index @index}} {{/index}}:  {{#date date}} {{/date}}</option>
+        {{/each}}
+      </select>
+      <label>С чем сравниваем</label>
+    </div>
+  </div>
+  <button class="btn">Сравнить</button>
+  <p>{{str1}}</p>
+</div>

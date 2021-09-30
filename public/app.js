@@ -1,5 +1,6 @@
 /* global M:readonly */
 M.Tabs.init(document.querySelector('.tabs'));
+M.FormSelect.init(document.querySelectorAll('select'));
 
 const toDate = (date) => Intl.DateTimeFormat('ru-Ru', {
   day: '2-digit',
