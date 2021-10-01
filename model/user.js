@@ -1,17 +1,26 @@
 import pkg from 'mongoose';
+
 const { Schema, model } = pkg;
 
 const userSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
-  last_name: String,
-  first_name: String
+  lastName: String,
+  firstName: String,
+  clientId: Number,
+  apiKey: String,
 });
+
+userSchema.methods.saveSettings = function (clientId, apiKey) {
+  this.clientId = clientId;
+  this.apiKey = apiKey;
+  return this.save();
+};
 
 export default model('User', userSchema);

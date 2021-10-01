@@ -8,6 +8,11 @@
         <li><a href="/"><i class="material-icons">home</i></a></li>
       {{/if}}
       {{#if isAuth}}
+        {{#if isSettings}}
+          <li class="active"><a href="/settings"><i class="material-icons">settings</i></a></li>
+        {{else}}
+          <li><a href="/settings"><i class="material-icons">settings</i></a></li>
+        {{/if}}
         <li><a href="/auth/logout">Выйти</a></li>
       {{else}}
         {{#if isLogin}}
