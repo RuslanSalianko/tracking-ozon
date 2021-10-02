@@ -17,7 +17,7 @@ const userSchema = new Schema({
   apiKey: String,
 });
 
-userSchema.methods.saveSettings = function (clientId, apiKey) {
+userSchema.methods.saveSettings = function saveSettings(clientId, apiKey) {
   this.clientId = clientId;
   this.apiKey = apiKey;
   return this.save();

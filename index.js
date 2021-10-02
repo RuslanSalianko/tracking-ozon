@@ -12,7 +12,12 @@ import ConnectMongoDBSession from 'connect-mongodb-session';
 import varMiddleware from './middleware/variables.js';
 import userMiddleware from './middleware/user.js';
 
-import { homeRouter, authRouter, settingsRouter } from './routes/index.js';
+import {
+  homeRouter,
+  authRouter,
+  settingsRouter,
+  fidsRouter,
+} from './routes/index.js';
 
 import keys from './keys/index.js';
 
@@ -56,6 +61,7 @@ app.use(userMiddleware);
 app.use('/', homeRouter);
 app.use('/auth', authRouter);
 app.use('/settings', settingsRouter);
+app.use('/fids', fidsRouter);
 
 const PORT = process.env.PORT || 3000;
 

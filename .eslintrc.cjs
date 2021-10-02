@@ -14,5 +14,6 @@ module.exports = {
     'consistent-return': ['error', { treatUndefinedAsUnspecified: true }],
     'no-underscore-dangle': ['error', { allow: ['_id', '__filename', '__dirname'] }],
     'import/extensions': ['error', 'always', { ignorePackages: true }],
+    'no-param-reassign': ['error', { props: false }],
   },
 };
